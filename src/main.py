@@ -1,10 +1,10 @@
-from textnode import TextNode
+from textnode import TextNode, TextType
 
 def main():
-    bill = TextNode("Wibble Wobble", "normal")
-    bill_link = TextNode("Click here", "code")
+    bill = TextNode("Wibble Wobble", TextType.NORMAL)
+    bill_link = TextNode("Click here", TextType.CODE , "www.weewoo.com")
     
-    bill.__repr__()
+    print(bill)
     print(bill_link)
 
 
