@@ -1,29 +1,14 @@
 from enum import Enum
+from htmlnode import LeafNode
 
 class TextType(Enum):
-    NORMAL = "normal"
+    TEXT = "text"
     BOLD = "bold"
     ITALIC = "italic"
     CODE = "code"
     LINK = "link"
     IMAGE = "image"
 
-#    except: ValueError:
-#        print(f"That is not a known text type")
-
-
-
-    
-    
-'''
-Normal text
-**Bold text**
-_Italic text_
-`Code text`
-Links, in this format: [anchor text](url)
-Images, in this format: ![alt text](url)
-'''
-    
 
 class TextNode:
     
@@ -42,6 +27,39 @@ class TextNode:
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
     
+
+
+
+def text_node_to_html_node(text_node):
+    if not isinstance(text_node, TextNode):
+        raise ValueError("This is not a TextNode.")
+    
+    
+    tag_dict = {
+        TextType.TEXT : None,
+        TextType.BOLD : "b",
+        TextType.ITALIC : "i",
+        TextType.CODE : "code",
+        TextType.LINK : "a",
+        TextType.IMAGE : "img"
+        }
+
+    prop_dict = {
+        TextType.TEXT : None,
+        TextType.BOLD : None,
+        TextType.ITALIC : None,
+        TextType.CODE : None,
+        TextType.LINK : {
+            "href" : text_node.url
+            },
+        TextType.IMAGE : {
+            "src" : text_node.url,
+            "alt" : text_node.text
+            }
+
+    }
+
+    return LeafNode(tag_dict[text_node.text_type], text_node.text, prop_dict[text_node.text_type])
     
     
     

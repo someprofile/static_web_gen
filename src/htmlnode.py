@@ -1,3 +1,8 @@
+#from textnode import TextType, TextNode
+#from enum import Enum
+#not sure if Enum import  is required to use TextType, test to see
+
+
 class HTMLNode:
     def __init__(self, tag = None, value = None, children = None, props = None):
         self.tag = tag
@@ -23,6 +28,10 @@ class HTMLNode:
 
         #return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
     
+    
+    
+    
+    
     def props_to_html(self):
         
         result = ""
@@ -34,6 +43,11 @@ class HTMLNode:
         
         return result
     
+
+
+
+
+
 
     def __repr__(self):
         #print(self)
@@ -101,30 +115,22 @@ class ParentNode(HTMLNode):
 
         return result
         
-        
-        
-        
 
 
 
 
-node = ParentNode(
-    "p",
-    [
-        LeafNode("b", "Bold text"),
-        LeafNode(None, "Normal text"),
-        ParentNode(
-            "d", 
-            [
-                LeafNode("i", "italic text"),
-                LeafNode(None, "Normal text")
-            ]),
-        LeafNode("i", "italic text"),
-        LeafNode(None, "Normal text")
-    ],
-)
 
-print(node.to_html())
+
+
+
+
+
+
+
+
+
+
+
 
 
 
